@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/homeZapp/static/css/main.02b04543.chunk.css",
+    "main.js": "/homeZapp/static/js/main.f6c8c86a.chunk.js",
+    "main.js.map": "/homeZapp/static/js/main.f6c8c86a.chunk.js.map",
+    "runtime-main.js": "/homeZapp/static/js/runtime-main.716be169.js",
+    "runtime-main.js.map": "/homeZapp/static/js/runtime-main.716be169.js.map",
+    "static/js/2.15307efa.chunk.js": "/homeZapp/static/js/2.15307efa.chunk.js",
+    "static/js/2.15307efa.chunk.js.map": "/homeZapp/static/js/2.15307efa.chunk.js.map",
+    "static/js/3.a26cd375.chunk.js": "/homeZapp/static/js/3.a26cd375.chunk.js",
+    "static/js/3.a26cd375.chunk.js.map": "/homeZapp/static/js/3.a26cd375.chunk.js.map",
+    "index.html": "/homeZapp/index.html",
+    "static/css/main.02b04543.chunk.css.map": "/homeZapp/static/css/main.02b04543.chunk.css.map",
+    "static/js/2.15307efa.chunk.js.LICENSE.txt": "/homeZapp/static/js/2.15307efa.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.716be169.js",
+    "static/js/2.15307efa.chunk.js",
+    "static/css/main.02b04543.chunk.css",
+    "static/js/main.f6c8c86a.chunk.js"
+  ]
+}
