@@ -2,7 +2,7 @@
     font-weight: 500;
 }
 .press-man-container{
-    
+    overflow: hidden;
 }
 .press-man-title{
     width: 100%;
@@ -89,4 +89,47 @@
 
 .toast-class.toast-show{
     top: 4.375rem;
+}
+
+.modal-section{
+    position: absolute;
+    height: -webkit-fill-available;
+    background: rgba(0,0,0,0.8);
+    width: -webkit-fill-available;
+    top: 0;
+    z-index: 1;
+}
+.modal-container{
+    height: 50vh;
+    top: 16vh;
+    max-height: 50vh;
+    position: relative;
+    margin: 0.938rem;
+    background: white;
+    border-radius: 20px;
+    padding: 0.938rem;
+    z-index: 5;
+}
+
+.data-contain{
+    padding: 0.5rem;
+    max-height: 80%;
+    overflow-y: scroll;
+    margin-bottom: 0.938rem;
+}
+.data-row{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid#EDEDED;
+}
+.modal-btn{
+    width: 85%;
+    position: absolute;
+    bottom: 0.938rem;
+}
+.no-data{
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding: 0.938rem 0;
 }

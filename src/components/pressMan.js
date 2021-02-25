@@ -6,8 +6,10 @@ const PressMan = (props) =>  {
     const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const [showTotal,updateTotalStatus] = useState(false);
+    const [role,updateRole] = useState('pressMan');
     const [showToast,updateToastStatus] = useState(false);
     const [cloudData,updateCloudData] = useState({});
+    const [currentMonthData,updateCurrentMonthData] = useState([]);
     const getCurrentFormatedDate = () => {
         let today = new Date();
         let dateObject = {
@@ -33,9 +35,13 @@ const PressMan = (props) =>  {
   
 
     useEffect(() => {
+        initalizeDate();
+    }, [dateValue,cloudData])
+
+    const initalizeDate = () => {
         let selectedDate = new Date(dateValue);
         let currentKey = month[selectedDate.getMonth()]+''+selectedDate.getFullYear();
-        let data = cloudData ? cloudData[currentKey]:null;
+        let data = cloudData && cloudData[role] ? cloudData[role][currentKey]:null;
         let indexValue = -1;
         if(data){
             data.map((item,index) => {
@@ -51,8 +57,9 @@ const PressMan = (props) =>  {
         updateData({
             clothes: Number(selectedVal.qty),
             rate: selectedVal.rate,
-        })
-    }, [dateValue])
+        });
+        updateCurrentMonthData(data);
+    }
 
     const updateDate = (options = {}) => {
         let {e} = options;
@@ -70,7 +77,8 @@ const PressMan = (props) =>  {
 
     const getTotalMonthPay = () => {
         let currentKey = month[today.getMonth()]+''+today.getFullYear();
-        let data = cloudData[currentKey];
+        let data =cloudData[role] ?  cloudData[role][currentKey] : [];
+        updateCurrentMonthData(data);
         let total = 0;
         if(data){
             data.map(val => {
@@ -86,28 +94,31 @@ const PressMan = (props) =>  {
         let uploadData = {...cloudData};
         let value = {
             date: dateValue,
-            qty: data.clothes,
-            rate: data.rate 
+            qty: Number(data.clothes),
+            rate: Number(data.rate) 
         }
-        if(!uploadData[type]){
-            uploadData[type] = [];
+        if(!uploadData[role]){
+            uploadData[role] = {}
         }
-        if(uploadData[type].length){
+        if(!uploadData[role][type]){
+            uploadData[role][type] = [];
+        }
+        if(uploadData[role][type].length){
             let indexVal = -1;
-            uploadData[type].map((item,index) => {
+            uploadData[role][type].map((item,index) => {
                 if(item.date === value.date){
                     indexVal = index; 
                 }
             })
             if(indexVal == -1){
-                uploadData[type].push({
+                uploadData[role][type].push({
                     ...value
                 });
             }else{
-                uploadData[type][indexVal] = value;
+                uploadData[role][type][indexVal] = value;
             }
         }else{
-            uploadData[type].push({
+            uploadData[role][type].push({
                 ...value
             });
         }
@@ -175,11 +186,30 @@ const PressMan = (props) =>  {
             
             <div className="total-expense">
                 {!showTotal && <div className="confirm-btn" onClick={()=>{getMonthlyTotal({action:'open'})}}>Get Current Balance to Pay For {month[today.getMonth()]}</div>}
-                {showTotal && <div>
-                    <div className="total-expense-contain">Current Amount to be paid &#8377;{total}</div>
-                    <div className="confirm-btn" onClick={()=>{getMonthlyTotal({action:'close'})}}>Back</div>
-                </div>}
             </div>
+            {showTotal && <div className="modal-section" onClick={()=>{getMonthlyTotal({action:'close'})}}>
+                <div className="modal-container">
+                    <div className="total-expense-contain">Current Amount to be paid &#8377;{total}</div>
+                    <div className = "data-contain">
+                        <div className="data-row">
+                            <div>Date</div>
+                            <div>Quantity</div>
+                            <div>RATE</div>
+                        </div>
+                        {currentMonthData.length && currentMonthData.map((item) => {
+                            return <div className="data-row">
+                                <div>{item.date}</div>
+                                <div>{item.qty}</div>
+                                <div>{item.rate}</div>
+                            </div>
+                        })}
+                        {!currentMonthData.length && <div className="no-data">
+                            No Data for the month
+                        </div>}
+                    </div>
+                    <div className="confirm-btn modal-btn" onClick={()=>{getMonthlyTotal({action:'close'})}}>Back</div>
+                </div>
+            </div>}
         </div>
     )
 }
