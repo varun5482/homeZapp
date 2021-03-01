@@ -15,7 +15,7 @@
     font-size: 1.25rem;
 }
 .press-man-card{
-    margin: 3rem 0.938rem 0;
+    margin: 2rem 0.938rem 0;
     background: #EDEDED;
     border-radius: 0.625rem;
     padding: 1rem;
@@ -132,4 +132,25 @@
     font-weight: 500;
     font-size: 1.25rem;
     padding: 0.938rem 0;
+}
+
+.select-option{
+    width: 100%;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.625rem;
+}
+
+.select-container{
+    display: flex;
+    justify-content: center;
+}
+.year-block{
+    width: 100%;
+    margin-right: 0.3125rem;
+}
+.month-block{
+    width: 100%;
+    margin-left: 0.3125rem;
 }

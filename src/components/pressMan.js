@@ -10,6 +10,8 @@ const PressMan = (props) =>  {
     const [showToast,updateToastStatus] = useState(false);
     const [cloudData,updateCloudData] = useState({});
     const [currentMonthData,updateCurrentMonthData] = useState([]);
+    const [selectedYear,updateSelectedYear] = useState(Number((new Date()).getFullYear()));
+    const [selectedMonth,updateSelectedMonth] = useState(month[(new Date()).getMonth()]);
     const getCurrentFormatedDate = () => {
         let today = new Date();
         let dateObject = {
@@ -76,8 +78,9 @@ const PressMan = (props) =>  {
 
 
     const getTotalMonthPay = () => {
-        let currentKey = month[today.getMonth()]+''+today.getFullYear();
+        let currentKey = selectedMonth+''+selectedYear;
         let data =cloudData[role] ?  cloudData[role][currentKey] : [];
+        data = data || [];
         updateCurrentMonthData(data);
         let total = 0;
         if(data){
@@ -152,6 +155,33 @@ const PressMan = (props) =>  {
         }
     }
 
+    let yearOptions = [];
+    let monthOptions = []; 
+    let years = {
+        start: 2000,
+        end: Number((new Date()).getFullYear())
+    }
+
+    for(let index=years.end;index>=years.start;index--){
+        yearOptions.push(<option value={index}>{index}</option>);
+    }
+    month.map(item => {
+        monthOptions.push(<option value={item}>{item}</option>);
+    })
+
+    const handleSelectedData = (options ={}) => {
+        let {action,event} = options;
+        let value = event.target.value;
+        switch(action){
+            case 'year':
+                updateSelectedYear(value);
+                break;
+            case 'month':
+                updateSelectedMonth(value);
+                break;
+        }
+    }
+
     return (
         <div className="press-man-container">
             <div className="press-man-title">
@@ -185,18 +215,33 @@ const PressMan = (props) =>  {
             </div>
             
             <div className="total-expense">
-                {!showTotal && <div className="confirm-btn" onClick={()=>{getMonthlyTotal({action:'open'})}}>Get Current Balance to Pay For {month[today.getMonth()]}</div>}
+                {!showTotal && <div>
+                    <div className="select-container">
+                        <div className="year-block">
+                            <select className="select-option" value={selectedYear} onChange={(e) => {handleSelectedData({action:'year',event:e})}}> 
+                            {yearOptions}
+                            </select>
+                        </div>
+                        <div className="month-block">
+                            <select className="select-option" value={selectedMonth} onChange={(e) => {handleSelectedData({action:'month',event:e})}}> 
+                            {monthOptions}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="confirm-btn" onClick={()=>{getMonthlyTotal({action:'open'})}}>Get Current Balance to Pay For {selectedMonth}</div>
+                </div>
+            }
             </div>
             {showTotal && <div className="modal-section" onClick={()=>{getMonthlyTotal({action:'close'})}}>
                 <div className="modal-container">
                     <div className="total-expense-contain">Current Amount to be paid &#8377;{total}</div>
                     <div className = "data-contain">
-                        <div className="data-row">
+                        {currentMonthData && currentMonthData.length > 0 && <div className="data-row">
                             <div>Date</div>
                             <div>Quantity</div>
                             <div>RATE</div>
-                        </div>
-                        {currentMonthData.length && currentMonthData.map((item) => {
+                        </div>}
+                        {currentMonthData && currentMonthData.length > 0 && currentMonthData.map((item) => {
                             return <div className="data-row">
                                 <div>{item.date}</div>
                                 <div>{item.qty}</div>
