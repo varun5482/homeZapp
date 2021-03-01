@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/homeZapp/static/css/main.09ce2fbd.chunk.css",
-    "main.js": "/homeZapp/static/js/main.ff33e9b0.chunk.js",
-    "main.js.map": "/homeZapp/static/js/main.ff33e9b0.chunk.js.map",
+    "main.css": "/homeZapp/static/css/main.97227217.chunk.css",
+    "main.js": "/homeZapp/static/js/main.604b17e2.chunk.js",
+    "main.js.map": "/homeZapp/static/js/main.604b17e2.chunk.js.map",
     "runtime-main.js": "/homeZapp/static/js/runtime-main.716be169.js",
     "runtime-main.js.map": "/homeZapp/static/js/runtime-main.716be169.js.map",
-    "static/js/2.be709d4c.chunk.js": "/homeZapp/static/js/2.be709d4c.chunk.js",
-    "static/js/2.be709d4c.chunk.js.map": "/homeZapp/static/js/2.be709d4c.chunk.js.map",
+    "static/js/2.7a85ed01.chunk.js": "/homeZapp/static/js/2.7a85ed01.chunk.js",
+    "static/js/2.7a85ed01.chunk.js.map": "/homeZapp/static/js/2.7a85ed01.chunk.js.map",
     "static/js/3.a26cd375.chunk.js": "/homeZapp/static/js/3.a26cd375.chunk.js",
     "static/js/3.a26cd375.chunk.js.map": "/homeZapp/static/js/3.a26cd375.chunk.js.map",
     "index.html": "/homeZapp/index.html",
-    "static/css/main.09ce2fbd.chunk.css.map": "/homeZapp/static/css/main.09ce2fbd.chunk.css.map",
-    "static/js/2.be709d4c.chunk.js.LICENSE.txt": "/homeZapp/static/js/2.be709d4c.chunk.js.LICENSE.txt"
+    "static/css/main.97227217.chunk.css.map": "/homeZapp/static/css/main.97227217.chunk.css.map",
+    "static/js/2.7a85ed01.chunk.js.LICENSE.txt": "/homeZapp/static/js/2.7a85ed01.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.716be169.js",
-    "static/js/2.be709d4c.chunk.js",
-    "static/css/main.09ce2fbd.chunk.css",
-    "static/js/main.ff33e9b0.chunk.js"
+    "static/js/2.7a85ed01.chunk.js",
+    "static/css/main.97227217.chunk.css",
+    "static/js/main.604b17e2.chunk.js"
   ]
 }
