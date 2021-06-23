@@ -154,3 +154,22 @@
     width: 100%;
     margin-left: 0.3125rem;
 }
+
+.food-tab{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.food-tab .tab{
+    width: calc(50% - 10px);
+    border: 1px solid black;
+    border-radius: 10px;
+    text-align: center;
+    padding: 5px 2px;
+    color: black;
+}
+.food-tab .tab.selected{
+    background: brown;
+    border-color: brown;
+    color: white;
+}

@@ -1,10 +1,10 @@
 import './App.css';
-import PressMan from './components/pressMan';
+import LandingPage from './components/LandingPage';
 
 function App() {
   return (
     <div className="App">
-      <PressMan />
+      <LandingPage />
     </div>
   );
 }
