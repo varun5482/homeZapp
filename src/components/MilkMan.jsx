@@ -2,11 +2,11 @@ import React,{useState,useEffect} from 'react';
 import {db} from '../firebase';
 import '../styles/pressMan.css';
 
-const PressMan = (props) =>  {
+const MilkMan = (props) =>  {
     const month = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
     const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const [showTotal,updateTotalStatus] = useState(false);
-    const [role,updateRole] = useState('pressMan');
+    const [role,updateRole] = useState('MilkMan');
     const [showToast,updateToastStatus] = useState(false);
     const [cloudData,updateCloudData] = useState({});
     const [currentMonthData,updateCurrentMonthData] = useState([]);
@@ -27,8 +27,8 @@ const PressMan = (props) =>  {
     const today = new Date();
     const dateString = today.getDate()+', '+month[today.getMonth()] + ' : '+ day[today.getDay()];
     const [data,updateData] = useState({
-        clothes: 0,
-        rate: 6,
+        packets: 1,
+        rate: 31,
     })
 
     useEffect(() => {
@@ -52,12 +52,12 @@ const PressMan = (props) =>  {
                 }
             });
         }
-        let selectedVal = {qty:0,rate:6};
+        let selectedVal = {packets:1,rate:31};
         if(indexValue != -1){
             selectedVal = data[indexValue];
         }    
         updateData({
-            clothes: Number(selectedVal.qty),
+            packets: Number(selectedVal.packets),
             rate: selectedVal.rate,
         });
         updateCurrentMonthData(data);
@@ -85,7 +85,7 @@ const PressMan = (props) =>  {
         let total = 0;
         if(data){
             data.map(val => {
-                total += (val.qty * val.rate);
+                total += (val.packets * val.rate);
             })
         }
         updateTotal(total);
@@ -97,7 +97,7 @@ const PressMan = (props) =>  {
         let uploadData = {...cloudData};
         let value = {
             date: dateValue,
-            qty: Number(data.clothes),
+            packets: Number(data.packets),
             rate: Number(data.rate) 
         }
         if(!uploadData[role]){
@@ -179,6 +179,7 @@ const PressMan = (props) =>  {
             case 'month':
                 updateSelectedMonth(value);
                 break;
+            default:
         }
     }
 
@@ -187,7 +188,7 @@ const PressMan = (props) =>  {
             <div className="press-man-title">
                 <div className="back-btn" onClick={()=>{window.location.pathname='/'}}>Back</div>
                 <div>
-                    Clothes Press
+                    Milk Man
                     <div className="bold">Date : {dateString}</div>
                 </div>
             </div>
@@ -199,16 +200,16 @@ const PressMan = (props) =>  {
                 </div>
                 <div className= "press-man-body-container">
                     <div className="input-container">
-                        <div className="label-class">Number of Clothes</div>
-                        <input type="number" value={data.clothes} onChange={e=>{updateValue(e,'clothes')}} />
+                        <div className="label-class">Number of Packets</div>
+                        <input type="number" value={data.packets} onChange={e=>{updateValue(e,'packets')}} />
                     </div>
                     <div className="input-container">
-                        <div>Rate</div>
+                        <div>Per Packet Price</div>
                         <input type="number" value={data.rate} onChange={e=>{updateValue(e,'rate')}}/>
                     </div>
                 </div>
                 <div className="today-total">
-                    Today's Total : &#8377;{data.rate * data.clothes}
+                    Today's Total : &#8377;{data.rate * data.packets}
                 </div>
                 <div className="confirm-btn" onClick={()=>{saveQty()}}>
                     <div>Confirm Quantity</div>
@@ -239,13 +240,13 @@ const PressMan = (props) =>  {
                     <div className = "data-contain">
                         {currentMonthData && currentMonthData.length > 0 && <div className="data-row">
                             <div>Date</div>
-                            <div>Quantity</div>
+                            <div>Packet(s)</div>
                             <div>RATE</div>
                         </div>}
                         {currentMonthData && currentMonthData.length > 0 && currentMonthData.map((item) => {
                             return <div className="data-row">
                                 <div>{item.date}</div>
-                                <div>{item.qty}</div>
+                                <div>{item.packets}</div>
                                 <div>{item.rate}</div>
                             </div>
                         })}
@@ -260,4 +261,4 @@ const PressMan = (props) =>  {
     )
 }
 
-export default PressMan;
+export default MilkMan;

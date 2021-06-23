@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import PressMan from './pressMan';
 import Food from './Food';
+import MilkMan from './MilkMan';
 import '../styles/landing-page.css';
 
 const LandingPage = () => {
@@ -47,7 +48,7 @@ const LandingPage = () => {
                 </div>
             }
             {currentActiveTab === 'Milk' &&
-                <div>Milk</div>
+                <div><MilkMan /></div>
             }
         </div>
     )

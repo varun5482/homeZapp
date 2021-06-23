@@ -194,6 +194,7 @@ const PressMan = (props) =>  {
     return (
         <div className="press-man-container">
             <div className="press-man-title">
+                <div className="back-btn" onClick={()=>{window.location.pathname='/'}}>Back</div>
                 <div>
                     Food
                     <div className="bold">Date : {dateString}</div>
